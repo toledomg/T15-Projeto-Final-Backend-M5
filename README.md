@@ -40,7 +40,7 @@
 
 </br>
 
-## Entregáveis
+## 🚛 Entregáveis
 
 Link deste repositório no GitHub;
 
