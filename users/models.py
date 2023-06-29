@@ -6,5 +6,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=25)
     email = models.EmailField(unique=True)
-
-    is_superuser = models.BooleanField(default=False, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    library_collaborator = models.BooleanField(default=False)
+    have_permission = models.DateField(default=None, blank=True, null=True)

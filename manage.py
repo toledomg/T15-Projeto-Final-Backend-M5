@@ -11,7 +11,7 @@ dotenv.load_dotenv(dotenv.find_dotenv())
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', '_core.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "_core.settings")
 
     # Alterar Porta default do Servidor Django `runserver` command
     runserver.default_port = os.getenv("DJ_SERVER")
@@ -27,7 +27,7 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
 dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
