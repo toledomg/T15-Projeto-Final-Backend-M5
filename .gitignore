@@ -6,7 +6,7 @@ __pycache__/
 # Particular extensions
 .vscode
 .gitignore
-README-secret.md
+.secret.md
 
 # C extensions
 *.so
