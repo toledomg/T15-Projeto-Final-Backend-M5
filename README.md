@@ -8,6 +8,7 @@
 
 - Na empresa em que você trabalha, o líder de tecnologia solicitou que você acesse um projeto antigo, no qual os usuários poderiam se cadastrar, cadastrar álbuns e músicas. Esse projeto foi desenvolvido com Django, utilizando APIView, Serializer e SQLite3. Ele deseja que você faça uma refatoração, aplicando os conceitos de Generic View, Model Serializer e alterando o banco de dados para o PostgreSQL.
 
+</br>
 ## 📚 Requisitos
 
 - Desenvolvimento do Projeto
@@ -24,13 +25,19 @@
 - Testes são opcionais, mas será um ótimo diferencial;
 - Pode usar o nome da Kenzie Academy Brasil nos projetos se precisar.
 
+</br>
+
 ## 💻 Features
 
 - [ x ] Estruturação do Projeto
 
+</br>
+
 ## 🚀 Tecnologias
 
 - **[Python](https://www.python.org/)**
+
+</br>
 
 ### Entregáveis
 
@@ -39,6 +46,8 @@ Link deste repositório no GitHub;
 - [Github Repo]()
 
 - [Link Deploy]()
+
+</br>
 
 ## 🧱 Pré-requisitos
 
@@ -160,6 +169,7 @@ pytest --testdox -vvs tests/test3/
 ## Import WorkSpace Insomnia
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](http://seu.link.aqui)
+
 </br>
 
 # 📌 Links Úteis
@@ -171,6 +181,8 @@ Link Grupo Slack;
 Link do Projeto no Canvas;
 
 - [Projeto no Canvas](https://canvas.kenzie.com.br/courses/76)
+
+</br>
 
 ## 🤝 Contribuições
 
