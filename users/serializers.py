@@ -6,7 +6,18 @@ from .models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "password", "name", "last_name"]
+        fields = [
+            "id",
+            "username",
+            "email",
+            "password",
+            "name",
+            "last_name",
+            "created_at",
+            "updated_at",
+            "library_collaborator",
+            "have_permission",
+        ]
         extra_kwargs = {
             "id": {"read_only": True},
             "password": {"write_only": True},
@@ -19,6 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
                 ]
             },
             "email": {"validators": [UniqueValidator(queryset=User.objects.all())]},
+            "have_permission": {"read_only": True},
         }
 
     def create(self, validated_data):
