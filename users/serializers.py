@@ -8,15 +8,17 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             "id",
-            "username",
-            "email",
-            "password",
             "name",
             "last_name",
+            "username",
+            "password",
+            "email",
+            "birthdate",
+            "collaborator",
             "created_at",
             "updated_at",
-            "library_collaborator",
-            "have_permission",
+            "is_active",
+            "is_allowed",
         ]
         extra_kwargs = {
             "id": {"read_only": True},
@@ -30,17 +32,21 @@ class UserSerializer(serializers.ModelSerializer):
                 ]
             },
             "email": {"validators": [UniqueValidator(queryset=User.objects.all())]},
-            "have_permission": {"read_only": True},
+            "is_allowed": {"read_only": True},
         }
 
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+        if validated_data["collaborator"]:
+            return User.objects.create_superuser(**validated_data)
+        else:
+            return User.objects.create_user(**validated_data)
 
     def update(self, instance, validated_data: dict):
         for key, value in validated_data.items():
-            setattr(instance, key, value)
             if key == "password":
                 instance.set_password(value)
+            else:
+                setattr(instance, key, value)
 
         instance.save()
 
