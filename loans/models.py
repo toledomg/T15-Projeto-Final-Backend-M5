@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 
 def loan_return():
-    return datetime.now() + timedelta(days=20)
+    return datetime.now() + timedelta(days=10)
 
 
 class Loans(models.Model):
@@ -18,8 +18,8 @@ class Loans(models.Model):
         related_name="loans"
     )
 
-    # book = models.ForeignKey(
-    #     "books.Book",
-    #     on_delete=models.PROTECT,
-    #     related_name="book"
-    # )
+    book = models.ForeignKey(
+        "books.Book",
+        on_delete=models.PROTECT,
+        related_name="book"
+    )

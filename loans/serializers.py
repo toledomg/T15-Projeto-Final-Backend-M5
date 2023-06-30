@@ -1,6 +1,8 @@
 from .models import Loans
 from rest_framework import serializers
 from users.serializers import UserSerializer
+from users.models import User
+from loans.models import Loans
 
 
 class LoansSerializer(serializers.ModelSerializer):
@@ -25,23 +27,14 @@ class CreateLoanSerializer(serializers.ModelSerializer):
             "user"
         ]
 
-    def create(self, validated_data):
-        return super().create(validated_data)
+    # def create(self, validated_data):
+    #     book_data = validated_data.pop("book_id")
+    #     user = validated_data["user"]
+    #     loan = Loans.objects.create(**validated_data, book_id=book)
 
+    #     User.objects.filter(email=user).update(is_debt="True")
 
-class CreateReturnSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    #     return loan
 
-    class Meta:
-        model = Loans
-        fields = "__all__"
-        read_only_fields = [
-            "id",
-            "loan_initial",
-            "loan_return",
-            "is_returned",
-            "user"
-        ]
-
-    def update(self, instance, validated_data):
-        return super().update(instance, validated_data)
+    # def update(self, instance, validated_data):
+    #     loan = 
