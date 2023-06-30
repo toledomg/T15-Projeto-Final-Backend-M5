@@ -10,6 +10,12 @@
 
 ## 📚 Requisitos
 
+<details>
+
+<summary>Saiba mais sobre os Requisitos do Projeto</summary>
+
+###
+
 - Desenvolvimento do Projeto
 - Utilizar Django Rest Framework como base do projeto;
 - Obrigatório desenvolver diagrama ER;
@@ -24,7 +30,7 @@
 - Testes são opcionais, mas será um ótimo diferencial;
 - Pode usar o nome da Kenzie Academy Brasil nos projetos se precisar.
 
-</br>
+</details>
 
 ## 💻 Features
 
