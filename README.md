@@ -224,7 +224,10 @@ Link do Projeto no Canvas;
 
 ## 🤝 Contribuições
 
-- **Alexsandro Toledo** - [Github](https://github.com/orgs/M3-T15-Projeto-Front-2023/people/toledomg)
+- **Alexsandro Toledo** - [Github](https://github.com/toledomg)
+- **Carol Rocha** - [Github](https://github.com/Carol-Rocha)
+- **Laisa Andrade** - [Github](https://github.com/LaisaCCAndrade)
+- **Lucas Ribeiro Marques** - [Github](https://github.com/lribeiromarques)
 
 ##
 
