@@ -87,9 +87,9 @@ De maneira geral, ao acessar a plataforma, um colaborador pode:
 
 Link deste repositório no GitHub;
 
-- [Github Repo]()
+- [Github Repo](https://github.com/toledomg/T15-Projeto-Final-Backend-M5)
 
-- [Link Deploy]()
+- [Link API Deploy RailRaw](t15-projeto-final-backend-m5-production.up.railway.app)
 
 </br>
 
