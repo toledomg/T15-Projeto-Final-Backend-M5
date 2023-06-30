@@ -56,6 +56,7 @@ THIRD_PARTY_APPS = [
 
 MY_APPS = [
     "users",
+    "loans",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + MY_APPS
