@@ -34,12 +34,15 @@ SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "t15-projeto-final-backend-m5-production.up.railway.app",
+]
 
 RAILWAY_STATIC_URL = os.getenv("RAILWAY_STATIC_URL")
 
 if RAILWAY_STATIC_URL:
-    
     ALLOWED_HOSTS += [RAILWAY_STATIC_URL, "0.0.0.0"]
 
 
