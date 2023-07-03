@@ -13,13 +13,13 @@ class LoanDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = LoansSerializer
 
     def perform_destroy(self, instance):
-        if instance.is_retuned:
+        if instance.is_returned:
 
             instance.copy.quantity += 1
             instance.copy.save()
 
-            instance.copy.is_retuned = True
+            instance.copy.is_returned = True
             instance.copy.save()
 
-            instance.is_retuned = True
+            instance.is_returned = True
             instance.save()
