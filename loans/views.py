@@ -14,7 +14,6 @@ class LoanDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_destroy(self, instance):
         if instance.is_returned:
-
             instance.copy.quantity += 1
             instance.copy.save()
 
