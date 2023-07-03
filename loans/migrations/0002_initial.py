@@ -9,18 +9,17 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("books", "0001_initial"),
+        ("loans", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="follow",
+            model_name="loans",
             name="user",
             field=models.ForeignKey(
-                null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name="user",
+                related_name="loans",
                 to=settings.AUTH_USER_MODEL,
             ),
         ),
