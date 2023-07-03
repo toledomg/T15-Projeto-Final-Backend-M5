@@ -1,4 +1,5 @@
 from .models import Loans
+from users.models import User
 from rest_framework import serializers
 from datetime import timedelta
 from django.utils import timezone
@@ -11,13 +12,17 @@ class LoansSerializer(serializers.ModelSerializer):
         model = Loans
         fields = "__all__"
 
+        extra_kwargs = {
+        "id": {"read_only": True},
+        "user": {"read_only": True},
+        }
+
     def create(self, validated_data):
         loan = Loans.objects.create(**validated_data)
         return loan
 
     def update(self, instance, validated_data):
-        instance.return_date = validated_data.get(
-            'loan_return', instance.loan_return)
+        instance.return_date = validated_data.get("loan_return", instance.loan_return)
         instance.save()
         return instance
 
@@ -25,8 +30,7 @@ class LoansSerializer(serializers.ModelSerializer):
         if not self.loan_return:
             self.loan_return = self.loan_initial + timedelta(days=5)
             if self.loan_return.weekday() in [5, 6]:
-                self.loan_return += timedelta(
-                    days=5 - self.loan_return.weekday())
+                self.loan_return += timedelta(days=5 - self.loan_return.weekday())
 
         if self.loan_return <= timezone.now():
             self.is_delay = False
@@ -40,18 +44,16 @@ class LoansSerializer(serializers.ModelSerializer):
 
 
 def update_blocked_status(self):
-        delay_loan_books = self.Loans_set.filter(is_delay=True)
+    delay_loan_books = self.Loans_set.filter(is_delay=True)
 
-        if delay_loan_books.exists():
-            self.is_active = False
-        else:
-            self.is_active = True
+    if delay_loan_books.exists():
+        self.is_active = False
+    else:
+        self.is_active = True
 
-        self.user.update_blocked_status()  
+    self.user.update_blocked_status()
+
 
 @receiver(post_save, sender=Loans)
 def update_user_blocked_status(sender, instance, **kwargs):
     instance.user.update_blocked_status()
-
-
-
