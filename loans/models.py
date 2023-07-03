@@ -1,16 +1,14 @@
 from django.db import models
-from time import strftime
-from datetime import datetime, timedelta
+from django.utils import timezone
 
-
-def loan_return():
-    return datetime.now() + timedelta(days=10)
 
 
 class Loans(models.Model):
-    loan_initial = models.DateTimeField(auto_now_add=True)
-    loan_return = models.DateTimeField(default=loan_return)
+    loan_initial = models.DateTimeField(default=timezone.now)
+    loan_return = models.DateTimeField(null=True, blank=True)
+    is_delay = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
+    blocking_date = models.DateTimeField(null=True, blank=True)
 
     user = models.ForeignKey(
         "users.User",
@@ -18,8 +16,11 @@ class Loans(models.Model):
         related_name="loans"
     )
 
-    book = models.ForeignKey(
-        "books.Book",
+    copy = models.ForeignKey(
+        "copies.Copy",
         on_delete=models.PROTECT,
-        related_name="book"
+        related_name="copy"
     )
+
+
+
