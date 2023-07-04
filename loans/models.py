@@ -5,7 +5,7 @@ from django.utils import timezone
 class Loans(models.Model):
     class Meta:
         ordering = ["id"]
-            
+
     loan_initial = models.DateTimeField(default=timezone.now)
     loan_return = models.DateTimeField(null=True)
     is_delay = models.BooleanField(default=False)
