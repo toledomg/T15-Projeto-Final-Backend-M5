@@ -4,11 +4,15 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from users.permissions import IsLibraryCollaboratorOrOwner
 
 from .serializers import CopySerializer
-from rest_framework import generics
+from rest_framework.generics import (
+    ListAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from books.models import Book
 
 
-class CopyBookView(generics.ListAPIView):
+class CopyBookView(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsLibraryCollaboratorOrOwner]
 

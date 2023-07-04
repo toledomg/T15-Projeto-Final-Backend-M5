@@ -13,8 +13,8 @@ class LoansSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
         extra_kwargs = {
-        "id": {"read_only": True},
-        "user": {"read_only": True},
+            "id": {"read_only": True},
+            "user": {"read_only": True},
         }
 
     def create(self, validated_data):

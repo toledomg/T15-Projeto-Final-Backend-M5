@@ -10,4 +10,7 @@ class CopySerializer(serializers.ModelSerializer):
         model = Copy
         fields = ["id", "copies_count", "in_stock", "book"]
 
-        extra_kwargs = {"book": {"read_only": True}}
+        extra_kwargs = {"id": {"read_only": True}, "book": {"read_only": True}}
+
+    def create(self, validated_data):
+        return Copy.objects.create(**validated_data)

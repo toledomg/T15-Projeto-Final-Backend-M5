@@ -3,6 +3,9 @@ from users.serializers import User
 
 
 class Book(models.Model):
+    class Meta:
+        ordering = ["id"]
+        
     title = models.CharField(max_length=150)
     author = models.CharField(max_length=150)
     pages = models.IntegerField(null=True, blank=True)

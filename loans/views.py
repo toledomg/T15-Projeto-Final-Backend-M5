@@ -1,4 +1,8 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import (
+    ListAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import Loans
@@ -20,14 +24,15 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
 
     queryset = Loans.objects.all()
     serializer_class = LoansSerializer
+    lookup_url_kwarg = "pk"
 
-    def perform_destroy(self, instance):
-        if instance.is_returned:
-            instance.copy.quantity += 1
-            instance.copy.save()
+    # def perform_destroy(self, instance):
+    #     if instance.is_returned:
+    #         instance.copy.quantity += 1
+    #         instance.copy.save()
 
-            instance.copy.is_returned = True
-            instance.copy.save()
+    #         instance.copy.is_returned = True
+    #         instance.copy.save()
 
-            instance.is_returned = True
-            instance.save()
+    #         instance.is_returned = True
+    #         instance.save()
