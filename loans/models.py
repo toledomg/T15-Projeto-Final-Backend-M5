@@ -4,10 +4,10 @@ from django.utils import timezone
 
 class Loans(models.Model):
     loan_initial = models.DateTimeField(default=timezone.now)
-    loan_return = models.DateTimeField(null=True, blank=True)
+    loan_return = models.DateTimeField(null=True)
     is_delay = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
-    blocking_date = models.DateTimeField(null=True, blank=True)
+    blocking_date = models.DateTimeField(null=True)
 
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="loans"

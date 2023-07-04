@@ -7,7 +7,7 @@ class Book(models.Model):
     author = models.CharField(max_length=150)
     pages = models.IntegerField(null=True, blank=True)
     category = models.CharField(max_length=150)
-    copies_count = models.IntegerField(default=10)
+    copies_count = models.IntegerField(default=1)
 
 
 class Follow(models.Model):

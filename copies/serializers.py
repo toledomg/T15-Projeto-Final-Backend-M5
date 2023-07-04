@@ -8,6 +8,6 @@ class CopySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Copy
-        fields = ["id","copies_count", "in_stock", "book"]
+        fields = ["id", "copies_count", "in_stock", "book"]
 
         extra_kwargs = {"book": {"read_only": True}}

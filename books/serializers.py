@@ -4,15 +4,9 @@ from books.models import *
 from copies.models import Copy
 
 
-
 class BookSerializer(serializers.ModelSerializer):
     def create(self, validated_data: dict) -> Book:
-        copies_count = validated_data.pop("copies_count")
-        Copy.objects.create(copies_count)
         return Book.objects.create(**validated_data)
-
-    def create(self, validate_data):
-        return Copy.objects.create(**validate_data)
 
     class Meta:
         model = Book
@@ -27,8 +21,8 @@ class BookSerializer(serializers.ModelSerializer):
 
         extra_kwargs = {
             "id": {"read_only": True},
-            }
-        
+        }
+
 
 class FollowSerializer(serializers.ModelSerializer):
     class Meta:

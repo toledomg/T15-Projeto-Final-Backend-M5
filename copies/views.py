@@ -1,11 +1,17 @@
 from django.shortcuts import get_object_or_404
 from .models import Copy
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from users.permissions import IsLibraryCollaboratorOrOwner
+
 from .serializers import CopySerializer
 from rest_framework import generics
 from books.models import Book
 
 
 class CopyBookView(generics.ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsLibraryCollaboratorOrOwner]
+
     serializer_class = [CopySerializer]
 
     def get_queryset(self):
