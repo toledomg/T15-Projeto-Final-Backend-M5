@@ -16,7 +16,7 @@ class CopyBookSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
 
     copies_count = serializers.IntegerField(write_only=True)
-    copies = CopyBookSerializer(many=True)
+    copies = CopyBookSerializer(many=True, read_only=True)
 
 
     class Meta:
