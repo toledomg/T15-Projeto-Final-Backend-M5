@@ -3,6 +3,7 @@ from loans.models import Loans
 from django.db.models.signals import post_save
 from datetime import timedelta
 from django.utils import timezone
+
 from django.dispatch import receiver
 
 
@@ -11,17 +12,25 @@ class LoansSerializer(serializers.ModelSerializer):
         model = Loans
         fields = "__all__"
 
+        extra_kwargs = {
+            "id": {"read_only": True},
+            "user": {"read_only": True},
+        }
+
     def create(self, validated_data):
         loan = Loans.objects.create(**validated_data)
         return loan
 
     def update(self, instance, validated_data):
+
         instance.loan_return = validated_data.get(
             'loan_return', instance.loan_return)
+
         instance.save()
         return instance
 
     def save(self, *args, **kwargs):
+
         if not self.instance.loan_return:
             self.instance.loan_return = self.instance.loan_initial + timedelta(
                 days=5)
@@ -47,6 +56,7 @@ class LoansSerializer(serializers.ModelSerializer):
         else:
             self.is_active = True
         self.user.update_blocked_status()
+
 
 
 @receiver(post_save, sender=Loans)
