@@ -17,5 +17,8 @@ class Loans(models.Model):
     )
 
     copy = models.ForeignKey(
-        "copies.Copy", on_delete=models.PROTECT, related_name="copy"
+        "copies.Copy",
+        on_delete=models.PROTECT,
+        related_name="loans"
+
     )

@@ -1,9 +1,9 @@
-from .models import Loans
-from users.models import User
 from rest_framework import serializers
+from loans.models import Loans
+from django.db.models.signals import post_save
 from datetime import timedelta
 from django.utils import timezone
-from django.db.models.signals import post_save
+
 from django.dispatch import receiver
 
 
@@ -22,36 +22,41 @@ class LoansSerializer(serializers.ModelSerializer):
         return loan
 
     def update(self, instance, validated_data):
-        instance.return_date = validated_data.get("loan_return", instance.loan_return)
+
+        instance.loan_return = validated_data.get(
+            'loan_return', instance.loan_return)
+
         instance.save()
         return instance
 
     def save(self, *args, **kwargs):
-        if not self.loan_return:
-            self.loan_return = self.loan_initial + timedelta(days=5)
-            if self.loan_return.weekday() in [5, 6]:
-                self.loan_return += timedelta(days=5 - self.loan_return.weekday())
 
-        if self.loan_return <= timezone.now():
-            self.is_delay = False
-            # self.blocking_date = timezone.now() + timedelta(days=7)
+        if not self.instance.loan_return:
+            self.instance.loan_return = self.instance.loan_initial + timedelta(
+                days=5)
 
-        if self.loan_return > timezone.now():
-            self.blocking_date = timezone.now() + timedelta(days=7)
-            self.is_delay = True
+            if self.instance.loan_return.weekday() in [5, 6]:
+                self.instance.loan_return += timedelta(
+                    days=5 - self.instance.loan_return.weekday())
 
-        super().save(*args, **kwargs)
+        if self.instance.loan_return <= timezone.now():
+            self.instance.is_delay = False
+            # self.instance.blocking_date = timezone.now() + timedelta(days=7)
 
+        if self.instance.loan_return > timezone.now():
+            self.instance.blocking_date = timezone.now() + timedelta(days=7)
+            self.instance.is_delay = True
 
-def update_blocked_status(self):
-    delay_loan_books = self.Loans_set.filter(is_delay=True)
+        return super().save(*args, **kwargs)
 
-    if delay_loan_books.exists():
-        self.is_active = False
-    else:
-        self.is_active = True
+    def update_blocked_status(self):
+        delay_loan_books = self.user.loans.filter(is_delay=True)
+        if delay_loan_books.exists():
+            self.is_active = False
+        else:
+            self.is_active = True
+        self.user.update_blocked_status()
 
-    self.user.update_blocked_status()
 
 
 @receiver(post_save, sender=Loans)
