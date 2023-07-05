@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from copies.models import Copy
+
+admin.site.register(Copy)

@@ -13,10 +13,11 @@ class CopyBookSerializer(serializers.ModelSerializer):
             "serial_number"
         ]
 
-
 class BookSerializer(serializers.ModelSerializer):
+
     copies_count = serializers.IntegerField(write_only=True)
     copies = CopyBookSerializer(many=True)
+
 
     class Meta:
         model = Book
@@ -29,6 +30,7 @@ class BookSerializer(serializers.ModelSerializer):
             "copies_count",
             "copies"
         ]
+
 
     def create(self, validated_data):
         copies_count = validated_data.pop("copies_count")
@@ -44,6 +46,7 @@ class BookSerializer(serializers.ModelSerializer):
         return book
        
         
+
 
 class FollowSerializer(serializers.ModelSerializer):
     class Meta:
