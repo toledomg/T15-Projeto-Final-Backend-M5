@@ -14,7 +14,7 @@ from users.permissions import IsAdminOrReadOnly
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
-class CopyBookView(generics.ListAPIView):
+class CopyBookView(ListAPIView):
     serializer_class = CopySerializer
 
 
