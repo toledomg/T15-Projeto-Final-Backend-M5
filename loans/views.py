@@ -14,8 +14,11 @@ class LoanView(ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsLibraryCollaboratorOrOwner]
 
+
     queryset = Loans.objects.filter(is_returned=False)
     serializer_class = LoansSerializer
+
+    
 
 
 class LoanDetailView(RetrieveUpdateDestroyAPIView):
@@ -25,6 +28,7 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Loans.objects.all()
     serializer_class = LoansSerializer
     lookup_url_kwarg = "pk"
+
 
     # def perform_destroy(self, instance):
     #     if instance.is_returned:
@@ -36,3 +40,4 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
 
     #         instance.is_returned = True
     #         instance.save()
+

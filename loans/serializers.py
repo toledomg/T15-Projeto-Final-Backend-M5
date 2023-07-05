@@ -5,21 +5,28 @@ from datetime import timedelta
 from django.utils import timezone
 
 from django.dispatch import receiver
+from copies.serializers import CopySerializer
+from users.serializers import UserSerializer
 
 
 class LoansSerializer(serializers.ModelSerializer):
+    copy = CopySerializer
+    user = UserSerializer
     class Meta:
         model = Loans
-        fields = "__all__"
+        fields = ["id","loan_initial","loan_return","is_delay","is_returned", "blocking_date","copy","user"]
 
         extra_kwargs = {
+
             "id": {"read_only": True},
             "user": {"read_only": True},
+
         }
 
     def create(self, validated_data):
         loan = Loans.objects.create(**validated_data)
         return loan
+
 
     def update(self, instance, validated_data):
 
@@ -43,9 +50,11 @@ class LoansSerializer(serializers.ModelSerializer):
             self.instance.is_delay = False
             # self.instance.blocking_date = timezone.now() + timedelta(days=7)
 
+
         if self.instance.loan_return > timezone.now():
             self.instance.blocking_date = timezone.now() + timedelta(days=7)
             self.instance.is_delay = True
+
 
         return super().save(*args, **kwargs)
 
@@ -59,6 +68,6 @@ class LoansSerializer(serializers.ModelSerializer):
 
 
 
-@receiver(post_save, sender=Loans)
-def update_user_blocked_status(sender, instance, **kwargs):
-    instance.user.update_blocked_status()
+#@receiver(post_save, sender=Loans)
+# def update_user_blocked_status(sender, instance, **kwargs):
+ #   instance.user.update_blocked_status()

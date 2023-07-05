@@ -1,12 +1,23 @@
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
+
 from books.models import *
 from copies.models import Copy
+import uuid
 
+class CopyBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Copy
+        fields = [
+            "id",
+            "is_available",
+            "serial_number"
+        ]
 
 class BookSerializer(serializers.ModelSerializer):
-    def create(self, validated_data: dict) -> Book:
-        return Book.objects.create(**validated_data)
+
+    copies_count = serializers.IntegerField(write_only=True)
+    copies = CopyBookSerializer(many=True, read_only=True)
+
 
     class Meta:
         model = Book
@@ -17,11 +28,24 @@ class BookSerializer(serializers.ModelSerializer):
             "pages",
             "category",
             "copies_count",
+            "copies"
         ]
 
-        extra_kwargs = {
-            "id": {"read_only": True},
-        }
+
+    def create(self, validated_data):
+        copies_count = validated_data.pop("copies_count")
+        copies_list = []
+
+        book = Book.objects.create(**validated_data)
+
+        for _ in range(copies_count):
+            hash_copy = str(uuid.uuid4().hex)
+            copy = Copy.objects.create(serial_number=hash_copy, book=book)
+            copies_list.append(copy)
+
+        return book
+       
+        
 
 
 class FollowSerializer(serializers.ModelSerializer):

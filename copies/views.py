@@ -10,16 +10,16 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
 )
 from books.models import Book
+from users.permissions import IsAdminOrReadOnly
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
-class CopyBookView(ListAPIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsLibraryCollaboratorOrOwner]
+class CopyBookView(generics.ListAPIView):
+    serializer_class = CopySerializer
 
-    serializer_class = [CopySerializer]
 
     def get_queryset(self):
-        queryset = super().get_queryset()
         instance_book = get_object_or_404(Book, pk=self.kwargs.get("pk"))
+        queryset = Copy.objects.filter(book=instance_book)
 
-        return queryset.filter(book=instance_book)
+        return queryset
