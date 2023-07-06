@@ -1,6 +1,6 @@
 from rest_framework import serializers
-
-from books.models import *
+from users.serializers import UserSerializer
+from books.models import Book, Follow
 from copies.models import Copy
 import uuid
 
@@ -45,10 +45,18 @@ class BookSerializer(serializers.ModelSerializer):
 
         return book
        
-        
-
 
 class FollowSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    book = BookSerializer(read_only=True)
     class Meta:
-        model: Follow
+        model = Follow
         fields = ["id", "book", "user"]
+
+
+class FollowedBooksSerializer(serializers.ModelSerializer):
+    book = BookSerializer(read_only=True)
+
+    class Meta:
+        model = Follow
+        fields = ["id", "book"]
