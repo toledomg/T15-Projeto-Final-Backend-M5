@@ -8,4 +8,4 @@ class CopySerializer(serializers.ModelSerializer):
     class Meta:
         model = Copy
 
-        fields = ["id","is_available", "serial_number",]
+        fields = ["id", "is_available", "serial_number",]
