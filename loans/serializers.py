@@ -10,11 +10,19 @@ from django.dispatch import receiver
 class LoansSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loans
-        fields = "__all__"
+        fields = [
+            "loan_initial",
+            "loan_return",
+            "is_delay",
+            "is_returned",
+            "blocking_date",
+            "user",
+            "copy",
+        ]
 
         extra_kwargs = {
             "id": {"read_only": True},
-            "user": {"read_only": True},
+            "user": {"read_only": True}
         }
 
     def create(self, validated_data):
@@ -29,9 +37,9 @@ class LoansSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-    def save(self, *args, **kwargs):
+    def save(self, instance, *args, **kwargs):
 
-        if not self.instance.loan_return:
+        if self.instance.loan_return:
             self.instance.loan_return = self.instance.loan_initial + timedelta(
                 days=5)
 
@@ -39,15 +47,15 @@ class LoansSerializer(serializers.ModelSerializer):
                 self.instance.loan_return += timedelta(
                     days=5 - self.instance.loan_return.weekday())
 
-        if self.instance.loan_return <= timezone.now():
-            self.instance.is_delay = False
-            # self.instance.blocking_date = timezone.now() + timedelta(days=7)
+        # if self.instance.loan_return <= timezone.now():
+        #     self.instance.is_delay = False
+        #     # self.instance.blocking_date = timezone.now() + timedelta(days=7)
 
         if self.instance.loan_return > timezone.now():
             self.instance.blocking_date = timezone.now() + timedelta(days=7)
             self.instance.is_delay = True
 
-        return super().save(*args, **kwargs)
+        return super().save(instance, *args, **kwargs)
 
     def update_blocked_status(self):
         delay_loan_books = self.user.loans.filter(is_delay=True)
@@ -56,7 +64,6 @@ class LoansSerializer(serializers.ModelSerializer):
         else:
             self.is_active = True
         self.user.update_blocked_status()
-
 
 
 @receiver(post_save, sender=Loans)

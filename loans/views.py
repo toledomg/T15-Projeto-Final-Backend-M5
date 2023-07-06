@@ -24,7 +24,7 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
 
     queryset = Loans.objects.all()
     serializer_class = LoansSerializer
-    lookup_url_kwarg = "pk"
+    lookup_url_kwarg = "book_id"
 
     # def perform_destroy(self, instance):
     #     if instance.is_returned:

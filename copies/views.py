@@ -20,6 +20,6 @@ class CopyBookView(ListAPIView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        instance_book = get_object_or_404(Book, pk=self.kwargs.get("pk"))
+        instance_book = get_object_or_404(Book, pk=self.kwargs.get("book_id"))
 
         return queryset.filter(book=instance_book)
