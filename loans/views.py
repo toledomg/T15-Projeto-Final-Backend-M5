@@ -4,12 +4,14 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
 )
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from datetime import datetime
+from django.utils.timezone import make_aware
 
 from .models import Loans
 from .serializers import LoansSerializer
 from users.permissions import IsLibraryCollaboratorOrOwner
 from users.models import User
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, ValidationError
 
 
 class LoanView(ListCreateAPIView):
@@ -21,12 +23,19 @@ class LoanView(ListCreateAPIView):
 
     def perform_create(self, serializer):
         user = self.request.user
-        print(user)
+
         if not user.is_allowed:
             raise PermissionDenied("You are not allowed to borrow books.")
-        # user.is_allowed = False
-        # user.save()
-        # print(user)
+
+        data_atual = datetime.now()
+        registros_atrasados = Loans.objects.filter(loan_return__lt=make_aware(data_atual))
+        print(registros_atrasados)
+
+        # Verifica se existem registros em atraso
+        if registros_atrasados.exists():
+            # Gera uma mensagem de erro
+            raise ValidationError({"detail": "Usuário com atraso na devolução dos empréstimos:"})
+        
         serializer.save(user=user)
 
 

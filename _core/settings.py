@@ -55,7 +55,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
-    "drf_spectacular",
+    "django_apscheduler",
 ]
 
 MY_APPS = [
@@ -63,6 +63,7 @@ MY_APPS = [
     "books",
     "loans",
     "copies",
+    "drf_spectacular",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + MY_APPS
@@ -194,6 +195,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.User"
 
 ADMIN_SITE_HEADER = "API _Core"
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+
+CRON_CLASSES = [
+    "loans.LoanSchedulerJob",
+    # ...
+]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
