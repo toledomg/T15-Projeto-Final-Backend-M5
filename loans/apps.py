@@ -4,6 +4,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 scheduler = BackgroundScheduler()
 
+
 class LoansConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "loans"

@@ -28,29 +28,34 @@ class LoansSerializer(serializers.ModelSerializer):
             "blocking_date",
             "copy",
             "user",
-            "copy_id"
+            "copy_id",
         ]
 
-        extra_kwargs = {
-
-            "id": {"read_only": True},
-            "user": {"read_only": True}
-        }
+        extra_kwargs = {"id": {"read_only": True}, "user": {"read_only": True}}
 
     def create(self, validated_data):
-        loan_return = timezone.now() + timedelta(days=1)
-       
+        loan_return = timezone.now() + timedelta(days=7)
+
+        blocking_date = validated_data.get("blocking_date")
+
+        if blocking_date and blocking_date >= timezone.now():
+            raise ValidationError("A data de bloqueio deve ser maior que a data atual")
+
         if loan_return.weekday() >= 5:
             loan_return += timedelta(days=7 - loan_return.weekday())
 
-
         copy_id = validated_data.pop("copy_id")
         copy = Copy.objects.get(id=copy_id)
+
         if not copy.is_available:
             raise ValidationError("Não há copias disponíveis no momento")
+
         copy.is_available = False
         copy.save()
-        loan = Loans.objects.create(copy=copy, loan_return=loan_return, **validated_data)
+
+        loan = Loans.objects.create(
+            copy=copy, loan_return=loan_return, **validated_data
+        )
 
         return loan
 
@@ -91,7 +96,6 @@ class LoansSerializer(serializers.ModelSerializer):
     #     self.user.update_blocked_status()
 
 
-
-#@receiver(post_save, sender=Loans)
+# @receiver(post_save, sender=Loans)
 # def update_user_blocked_status(sender, instance, **kwargs):
- #   instance.user.update_blocked_status()
+#   instance.user.update_blocked_status()

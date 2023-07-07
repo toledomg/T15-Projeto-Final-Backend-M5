@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Copy(models.Model):
-
     is_available = models.BooleanField(default=True, null=True)
     serial_number = models.CharField(null=True)
 

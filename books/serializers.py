@@ -4,20 +4,16 @@ from books.models import Book, Follow
 from copies.models import Copy
 import uuid
 
+
 class CopyBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Copy
-        fields = [
-            "id",
-            "is_available",
-            "serial_number"
-        ]
+        fields = ["id", "is_available", "serial_number"]
+
 
 class BookSerializer(serializers.ModelSerializer):
-
     copies_count = serializers.IntegerField(write_only=True)
     copies = CopyBookSerializer(many=True, read_only=True)
-
 
     class Meta:
         model = Book
@@ -28,9 +24,8 @@ class BookSerializer(serializers.ModelSerializer):
             "pages",
             "category",
             "copies_count",
-            "copies"
+            "copies",
         ]
-
 
     def create(self, validated_data):
         copies_count = validated_data.pop("copies_count")
@@ -44,11 +39,12 @@ class BookSerializer(serializers.ModelSerializer):
             copies_list.append(copy)
 
         return book
-       
+
 
 class FollowSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     book = BookSerializer(read_only=True)
+
     class Meta:
         model = Follow
         fields = ["id", "book", "user"]

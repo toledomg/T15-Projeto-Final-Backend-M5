@@ -9,12 +9,12 @@ from django.contrib.auth import get_user_model
 
 user = get_user_model
 
+
 def block_user(pk):
     user = user.objects.get(pk=pk)
     user.is_allowed = False
     user.save()
     print(user)
-
 
 
 class LoanSchedulerJob(Job):
@@ -25,5 +25,4 @@ class LoanSchedulerJob(Job):
         loans = Loans.objects.filter(is_returned=False, loan_return=timezone.now())
         for loan in loans:
             block_user(loan.user_id)
-            loan.save    
-          
+            loan.save
