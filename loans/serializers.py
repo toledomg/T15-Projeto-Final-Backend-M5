@@ -38,11 +38,10 @@ class LoansSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        loan_return = timezone.now() + timedelta(days=5)
+        loan_return = timezone.now() + timedelta(days=1)
        
-        if loan_return.weekday() in [5, 6]:
-            loan_return += timedelta(days=5 - loan_return.weekday())
-
+        if loan_return.weekday() >= 5:
+            loan_return += timedelta(days=7 - loan_return.weekday())
 
 
         copy_id = validated_data.pop("copy_id")
