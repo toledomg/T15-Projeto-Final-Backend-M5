@@ -39,8 +39,11 @@ class LoansSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         loan_return = timezone.now() + timedelta(days=5)
+       
         if loan_return.weekday() in [5, 6]:
             loan_return += timedelta(days=5 - loan_return.weekday())
+
+
 
         copy_id = validated_data.pop("copy_id")
         copy = Copy.objects.get(id=copy_id)
