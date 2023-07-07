@@ -4,12 +4,14 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
 )
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from datetime import datetime, timedelta
+from django.utils.timezone import make_aware
 
 from .models import Loans
 from .serializers import LoansSerializer
 from users.permissions import IsLibraryCollaboratorOrOwner
 from users.models import User
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, ValidationError
 
 
 class LoanView(ListCreateAPIView):
@@ -20,13 +22,32 @@ class LoanView(ListCreateAPIView):
     serializer_class = LoansSerializer
 
     def perform_create(self, serializer):
+        data_atual = datetime.now()
         user = self.request.user
-        print(user)
+        is_delay = Loans.objects.filter(user=user, is_delay=True)
+
+        if is_delay:
+            raise ValidationError({"detail": "User is blocked for delay"})
+
+        blocking_dates = Loans.objects.filter(
+            user=user, blocking_date__lt=make_aware(data_atual)
+        )
+
+        if blocking_dates.exists():
+            raise ValidationError({"detail": "User is blocked"})
+
+        registros_atrasados = Loans.objects.filter(
+            loan_return__lt=make_aware(data_atual)
+        )
+
+        if registros_atrasados.exists():
+            raise ValidationError({"detail": "User with delay in returning loans"})
+
+        user = self.request.user
+
         if not user.is_allowed:
-            raise PermissionDenied("You are not allowed to borrow books.")
-        # user.is_allowed = False
-        # user.save()
-        # print(user)
+            raise PermissionDenied({"detail": "You are not allowed to borrow books."})
+
         serializer.save(user=user)
 
 
@@ -37,16 +58,3 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Loans.objects.all()
     serializer_class = LoansSerializer
     lookup_url_kwarg = "pk"
-
-
-    # def perform_destroy(self, instance):
-    #     if instance.is_returned:
-    #         instance.copy.quantity += 1
-    #         instance.copy.save()
-
-    #         instance.copy.is_returned = True
-    #         instance.copy.save()
-
-    #         instance.is_returned = True
-    #         instance.save()
-

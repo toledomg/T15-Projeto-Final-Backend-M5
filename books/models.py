@@ -12,7 +12,6 @@ class Book(models.Model):
     category = models.CharField(max_length=150)
 
 
-
 class Follow(models.Model):
     book = models.ForeignKey(
         Book, on_delete=models.CASCADE, related_name="book", null=True

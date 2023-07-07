@@ -55,7 +55,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
-    "drf_spectacular",
+    "django_apscheduler",
 ]
 
 MY_APPS = [
@@ -64,6 +64,7 @@ MY_APPS = [
     "loans",
     "copies",
     "reviews",
+    "drf_spectacular",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + MY_APPS
@@ -133,7 +134,6 @@ if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -195,6 +195,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.User"
 
 ADMIN_SITE_HEADER = "API _Core"
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+
+CRON_CLASSES = [
+    "loans.LoanSchedulerJob",
+    # ...
+]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True

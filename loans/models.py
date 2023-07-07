@@ -4,7 +4,6 @@ from datetime import timedelta
 
 
 class Loans(models.Model):
-
     class Meta:
         ordering = ["id"]
 
@@ -20,9 +19,5 @@ class Loans(models.Model):
     )
 
     copy = models.ForeignKey(
-
-        "copies.Copy",
-        on_delete=models.PROTECT,
-        related_name="loans"
-
+        "copies.Copy", on_delete=models.PROTECT, related_name="loans"
     )
