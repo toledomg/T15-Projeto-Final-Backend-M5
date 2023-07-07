@@ -19,15 +19,16 @@ from django.urls import include, path
 
 from django.conf import settings
 
-admin.site.site_header = settings.ADMIN_SITE_HEADER
-admin.sites.AdminSite.site_title = "API Projeto Final "
-admin.sites.AdminSite.index_title = "Dashboard"
-
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
     SpectacularRedocView,
 )
+
+admin.site.site_header = settings.ADMIN_SITE_HEADER
+admin.sites.AdminSite.site_title = "API Projeto Final "
+admin.sites.AdminSite.index_title = "Dashboard"
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,6 +36,7 @@ urlpatterns = [
     path("api/", include("loans.urls")),
     path("api/", include("books.urls")),
     path("api/", include("reviews.urls")),
+    path("api/", include("copies.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/docs/swagger/",
