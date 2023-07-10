@@ -58,7 +58,7 @@ class EmailNotificationView(APIView):
 
     def post(self, request: Request) -> Response:
         user = request.user
-        book_id = request.data.get('book_id')
+        book_id = request.data.get("book_id")
 
         try:
             follow = Follow.objects.get(user=user, book_id=book_id)
@@ -68,14 +68,16 @@ class EmailNotificationView(APIView):
             available_copies = copies.filter(is_available=True)
 
             if available_copies.exists():
-                subject = 'Notificação de Disponibilidade do Livro'
+                subject = "Notificação de Disponibilidade do Livro"
                 message = f"O livro {book.title} está agora disponível para empréstimo. Faça o seu pedido!"
                 recipient_list = [user.email]
 
-                send_mail(subject,
-                          message,
-                          from_email=settings.EMAIL_HOST_USER,
-                          recipient_list=recipient_list)
+                send_mail(
+                    subject,
+                    message,
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=recipient_list,
+                )
                 return Response(status=status.HTTP_200_OK)
             else:
                 return Response(status=status.HTTP_204_NO_CONTENT)
