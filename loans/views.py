@@ -59,12 +59,6 @@ class LoanView(ListCreateAPIView):
             raise PermissionDenied({"detail": "You are not allowed to borrow books."})
 
         serializer.save(user=user)
-        # instance.loan_return = None
-        # instance.copy.is_available = True
-        # instance.copy.save()
-
-        # instance.is_returned = True
-        # instance.save()
 
 
 class LoanDetailView(RetrieveUpdateDestroyAPIView):
@@ -91,8 +85,9 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
             instance.blocking_date = current_datetime + timedelta(days=7)
             instance.save()
 
-            # instance.user.is_allowed = False
-            # instance.user.save()
+            user = User.objects.get(id=instance.user.id)
+            user.is_allowed = False
+            user.save()
 
             instance.loan_return = None
             instance.copy.is_available = True
