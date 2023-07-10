@@ -12,10 +12,12 @@ from django.contrib.auth import get_user_model
 # user = get_user_model
 user = User.objects.all()
 
+
 def block_user(pk):
     user = User.objects.get(id=pk)
     user.is_allowed = False
     user.save()
+
 
 def unblock_user(pk):
     user = User.objects.get(id=pk)
@@ -30,15 +32,15 @@ class LoanSchedulerJob(Job):
         from users.models import User
 
         data_atual = make_aware(datetime.now())
-  
+
         loans = Loans.objects.all()
 
         for loan in loans:
-            # print(loan.user.id)
 
             if not loan.is_returned and loan.loan_return < data_atual:
                 block_user(loan.user.id)
                 loan.save()
+
 
 class Loan2SchedulerJob(Job):
     @staticmethod
@@ -47,17 +49,11 @@ class Loan2SchedulerJob(Job):
         from users.models import User
 
         data_atual = make_aware(datetime.now())
-  
+
         loans = Loans.objects.all()
 
         for loan in loans:
-            print(loan.user.id)
 
             if loan.is_returned and loan.blocking_date <= data_atual:
                 unblock_user(loan.user.id)
                 loan.save()
-
-  
-
-     
-

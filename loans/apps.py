@@ -14,14 +14,14 @@ class LoansConfig(AppConfig):
         scheduler.add_job(
             LoanSchedulerJob.run,
             trigger="interval",
-            seconds=3,
+            days=1,
             id="check_devolution",
             replace_existing=True,
         )
         scheduler.add_job(
             Loan2SchedulerJob.run,
             trigger="interval",
-            seconds=3,
+            days=1,
             id="check_devolution",
             replace_existing=True,
         )
