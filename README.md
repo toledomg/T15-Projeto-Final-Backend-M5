@@ -1,7 +1,7 @@
 <h1 align="center"> 🏆 T15 - Projeto Final Backend BiblioteKA 📚 - M5 </h1>
 
 <h3 align="center"> 
-	🚧  Projeto Backend BiblioteKA 📚 - 🚀 Em construção...  🚧
+	🚀 🚀 Projeto Backend BiblioteKA 📚
 </h3>
 
 ## 💡 Introdução
@@ -213,18 +213,6 @@ pytest --testdox -vvs tests/test3/
 ## Import WorkSpace Insomnia
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Projeto-Final-T15-m5&uri=https%3A%2F%2Fgithub.com%2Ftoledomg%2FT15-Projeto-Final-Backend-M5%2Fblob%2Fdevelop%2Fwork_insomnia)
-
-</br>
-
-# 📌 Links Úteis
-
-Link Grupo Slack;
-
-- [Canal Grupo-10](https://app.slack.com/client/TQZR39SET/C05ENM0FARH)
-
-Link do Projeto no Canvas;
-
-- [Projeto no Canvas](https://canvas.kenzie.com.br/courses/76)
 
 </br>
 
