@@ -20,12 +20,18 @@ class ReviewSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = self.context["request"].user
         book_id = self.initial_data.get("book_id")
+        existing_review = Review.objects.filter(user=user, book=book_id).filter()
 
-        if book_id:
-            try:
-                book = Book.objects.get(id=book_id)
-                return Review.objects.create(book=book, user=user, **validated_data)
-            except Book.DoesNotExist:
-                raise serializers.ValidationError("Invalid book ID")
+        if existing_review:
+            raise serializers.ValidationError(
+                {"error": "User already has rating for this book"}
+            )
         else:
-            raise serializers.ValidationError("Book ID is required")
+            if book_id:
+                try:
+                    book = Book.objects.get(id=book_id)
+                    return Review.objects.create(book=book, user=user, **validated_data)
+                except Book.DoesNotExist:
+                    raise serializers.ValidationError({"error": "Invalid book ID"})
+            else:
+                raise serializers.ValidationError({"error": "Book ID is required"})
