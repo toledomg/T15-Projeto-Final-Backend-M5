@@ -6,7 +6,7 @@ from rest_framework.generics import (
 )
 from rest_framework.views import Response, status
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from users.serializers import UserSerializer
 from .models import Loans
@@ -33,7 +33,7 @@ class LoanView(ListCreateAPIView):
         is_delay = Loans.objects.filter(user=user, is_delay=True)
 
         if is_delay:
-            raise ValidationError({"detail": "User is blocked for delay"})
+            raise ValidationError({"detail": f"User is blocked for delay "})
 
         blocking_dates = Loans.objects.filter(
             user=user, blocking_date__lt=make_aware(data_atual)
@@ -47,7 +47,11 @@ class LoanView(ListCreateAPIView):
         )
 
         if registros_atrasados.exists():
-            raise ValidationError({"detail": "User with delay in returning loans"})
+            data_now = datetime.now() 
+            for registro in registros_atrasados:
+                delay = data_now.date() - registro.loan_return.date()
+                delay_days = delay.days
+                raise ValidationError({"detail": f"User count overdue records by {delay_days} days"})
 
         if not user.is_allowed:
             raise PermissionDenied({"detail": "You are not allowed to borrow books."})
@@ -68,7 +72,7 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
 
         if instance.is_returned:
             return Response(
-                {"details": "Este livro já foi devolvido."},
+                {"details": "This book has already been returned."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -87,7 +91,7 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
             instance.copy.save()
 
             return Response(
-                {"details": "A data limite de devolução foi ultrapassada."},
+                {"details": f"Return deadline has been exceeded, user is blocked until {instance.blocking_date}."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
