@@ -38,7 +38,7 @@ class LoanView(ListCreateAPIView):
         blocking_dates = Loans.objects.filter(
             user=user, blocking_date__lt=make_aware(data_atual)
         )
-        print(blocking_dates)
+
         if blocking_dates.exists():
             raise ValidationError({"detail": "User is blocked"})
 
@@ -47,16 +47,24 @@ class LoanView(ListCreateAPIView):
         )
 
         if registros_atrasados.exists():
-            data_now = datetime.now() 
+            data_now = datetime.now()
             for registro in registros_atrasados:
                 delay = data_now.date() - registro.loan_return.date()
                 delay_days = delay.days
-                raise ValidationError({"detail": f"User count overdue records by {delay_days} days"})
+                raise ValidationError(
+                    {"detail": f"User count overdue records by {delay_days} days"}
+                )
 
-        # if not user.is_allowed:
-        #     raise PermissionDenied({"detail": "You are not allowed to borrow books."})
+        if not user.is_allowed:
+            raise PermissionDenied({"detail": "You are not allowed to borrow books."})
 
         serializer.save(user=user)
+        # instance.loan_return = None
+        # instance.copy.is_available = True
+        # instance.copy.save()
+
+        # instance.is_returned = True
+        # instance.save()
 
 
 class LoanDetailView(RetrieveUpdateDestroyAPIView):
@@ -80,24 +88,24 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
         return_deadline = instance.loan_return.date()
 
         if current_datetime.date() > return_deadline:
-            if instance.blocking_date:
-                    return Response(
-                        {"details": f"Return deadline has been exceeded, user is blocked until {instance.blocking_date}."},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-
             instance.blocking_date = current_datetime + timedelta(days=7)
             instance.save()
 
-            instance.user.is_allowed = False
-            instance.user.save()
+            # instance.user.is_allowed = False
+            # instance.user.save()
 
             instance.loan_return = None
             instance.copy.is_available = True
             instance.copy.save()
 
+            instance.is_returned = True
+            instance.save()            
+
             return Response(
-                {"details": f"Usuário bloqueado até o dia {instance.blocking_date}."},
+                {
+                    "info": "This book has already been returned",
+                    "details": f"Return deadline has been exceeded, user is blocked until {instance.blocking_date}.",
+                },
                 status=status.HTTP_400_BAD_REQUEST,
             )
 

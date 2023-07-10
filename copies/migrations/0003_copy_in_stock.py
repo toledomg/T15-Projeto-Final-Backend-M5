@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('copies', '0002_copy_copies_count'),
+        ("copies", "0002_copy_copies_count"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='copy',
-            name='in_stock',
+            model_name="copy",
+            name="in_stock",
             field=models.BooleanField(default=True, null=True),
         ),
     ]

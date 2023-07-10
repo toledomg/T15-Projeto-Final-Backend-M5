@@ -9,7 +9,7 @@ import dotenv
 
 
 def send_emails():
-    books = Book.objects.filter(copies_count__gt=0)
+    books = Book.objects.filter(copies__gt=0)
     emails = []
     for book in books:
         follows = Follow.objects.filter(book_id=book.id)
@@ -27,4 +27,5 @@ def send_emails():
 class BookSchedulerJob(Job):
     @staticmethod
     def run():
+        # print("email, deu certo")
         send_emails()

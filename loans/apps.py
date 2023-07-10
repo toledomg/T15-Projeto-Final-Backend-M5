@@ -15,7 +15,7 @@ class LoansConfig(AppConfig):
         scheduler.add_job(
             LoanSchedulerJob.run,
             trigger="interval",
-            seconds=6,
+            seconds=1,
             id="check_devolution",
             replace_existing=True,
         )

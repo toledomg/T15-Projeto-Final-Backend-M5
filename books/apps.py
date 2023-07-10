@@ -4,6 +4,7 @@ import time
 
 scheduler = BackgroundScheduler()
 
+
 class BooksConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "books"
@@ -14,10 +15,9 @@ class BooksConfig(AppConfig):
         scheduler.add_job(
             BookSchedulerJob.run,
             trigger="interval",
-            seconds=6,
-            # horas=24,
+            hours=24,
             id="check_send_mail",
             replace_existing=True,
         )
 
-        # scheduler.start()
+        scheduler.start()
