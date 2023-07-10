@@ -13,11 +13,11 @@ class LoansConfig(AppConfig):
         from .scheduler import LoanSchedulerJob
 
         scheduler.add_job(
-            LoanSchedulerJob.init_scheduler,
+            LoanSchedulerJob.run,
             trigger="interval",
             seconds=6,
             id="check_devolution",
             replace_existing=True,
         )
 
-        scheduler.start()
+        # scheduler.start()

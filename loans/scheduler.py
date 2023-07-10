@@ -19,7 +19,7 @@ def block_user(pk):
 
 class LoanSchedulerJob(Job):
     @staticmethod
-    def init_scheduler():
+    def run():
         from .models import Loans
 
         loans = Loans.objects.filter(is_returned=False, loan_return=timezone.now())
