@@ -12,6 +12,7 @@ from .models import Book, Follow
 from .serializers import BookSerializer, FollowSerializer, FollowedBooksSerializer
 from django.core.mail import send_mail
 from django.conf import settings
+from rest_framework.exceptions import ValidationError
 
 
 class BookView(ListCreateAPIView):
@@ -37,8 +38,11 @@ class FollowCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        book_title = self.request.data.get("title")
-        book = Book.objects.get(title=book_title)
+        book_id = self.request.data.get("book_id")
+        book = Book.objects.get(id=book_id)
+        existing_follow = Follow.objects.filter(user=self.request.user, book=book)
+        if existing_follow.exists():
+            raise ValidationError("You already follow this book")
         serializer.save(user=self.request.user, book=book)
 
 
@@ -50,36 +54,3 @@ class FollowedBooksListView(ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Follow.objects.filter(user=user)
-
-
-class EmailNotificationView(APIView):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
-
-    def post(self, request: Request) -> Response:
-        user = request.user
-        book_id = request.data.get("book_id")
-
-        try:
-            follow = Follow.objects.get(user=user, book_id=book_id)
-            book = follow.book
-
-            copies = book.copies.all()
-            available_copies = copies.filter(is_available=True)
-
-            if available_copies.exists():
-                subject = "Notificação de Disponibilidade do Livro"
-                message = f"O livro {book.title} está agora disponível para empréstimo. Faça o seu pedido!"
-                recipient_list = [user.email]
-
-                send_mail(
-                    subject,
-                    message,
-                    from_email=settings.EMAIL_HOST_USER,
-                    recipient_list=recipient_list,
-                )
-                return Response(status=status.HTTP_200_OK)
-            else:
-                return Response(status=status.HTTP_204_NO_CONTENT)
-        except Follow.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)

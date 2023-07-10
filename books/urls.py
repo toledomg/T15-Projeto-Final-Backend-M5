@@ -3,8 +3,7 @@ from .views import (
     BookView,
     BookDetailView,
     FollowCreateView,
-    FollowedBooksListView,
-    EmailNotificationView,
+    FollowedBooksListView,  
 )
 
 urlpatterns = [
@@ -12,5 +11,5 @@ urlpatterns = [
     path("books/<int:pk>/", BookDetailView.as_view()),
     path("books/follow/", FollowCreateView.as_view()),
     path("books/followed-books/", FollowedBooksListView.as_view()),
-    path("send-email/", EmailNotificationView.as_view()),
+  
 ]
