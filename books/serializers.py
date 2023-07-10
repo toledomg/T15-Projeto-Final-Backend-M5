@@ -5,6 +5,12 @@ from copies.models import Copy
 import uuid
 
 
+class ReviewBooksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ["title", "author", "category"]
+
+
 class CopyBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Copy
