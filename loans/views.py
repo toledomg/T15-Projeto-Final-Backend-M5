@@ -38,7 +38,7 @@ class LoanView(ListCreateAPIView):
         blocking_dates = Loans.objects.filter(
             user=user, blocking_date__lt=make_aware(data_atual)
         )
-
+        print(blocking_dates)
         if blocking_dates.exists():
             raise ValidationError({"detail": "User is blocked"})
 
@@ -53,8 +53,8 @@ class LoanView(ListCreateAPIView):
                 delay_days = delay.days
                 raise ValidationError({"detail": f"User count overdue records by {delay_days} days"})
 
-        if not user.is_allowed:
-            raise PermissionDenied({"detail": "You are not allowed to borrow books."})
+        # if not user.is_allowed:
+        #     raise PermissionDenied({"detail": "You are not allowed to borrow books."})
 
         serializer.save(user=user)
 
@@ -80,6 +80,12 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
         return_deadline = instance.loan_return.date()
 
         if current_datetime.date() > return_deadline:
+            if instance.blocking_date:
+                    return Response(
+                        {"details": f"Return deadline has been exceeded, user is blocked until {instance.blocking_date}."},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
             instance.blocking_date = current_datetime + timedelta(days=7)
             instance.save()
 
@@ -91,7 +97,7 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
             instance.copy.save()
 
             return Response(
-                {"details": f"Return deadline has been exceeded, user is blocked until {instance.blocking_date}."},
+                {"details": f"Usuário bloqueado até o dia {instance.blocking_date}."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
