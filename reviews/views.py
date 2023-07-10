@@ -16,7 +16,8 @@ class ReviewView(generics.ListCreateAPIView):
 
 class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsLibraryCollaboratorOrOwner]
 
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+    lookup_url_kwarg = "pk"
