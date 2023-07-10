@@ -97,7 +97,7 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
             instance.copy.save()
 
             return Response(
-                {"details": f"Return deadline has been exceeded, user is blocked until {instance.blocking_date}."},
+                {"details": f"Usuário bloqueado até o dia {instance.blocking_date}."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
