@@ -31,7 +31,6 @@ class LoanSchedulerJob(Job):
         loans = Loans.objects.all()
 
         for loan in loans:
-
             if not loan.is_returned and loan.loan_return < data_atual:
                 block_user(loan.user.id)
                 loan.save()
@@ -48,7 +47,6 @@ class Loan2SchedulerJob(Job):
         loans = Loans.objects.all()
 
         for loan in loans:
-
             if loan.is_returned and loan.blocking_date <= data_atual:
                 unblock_user(loan.user.id)
                 loan.save()
