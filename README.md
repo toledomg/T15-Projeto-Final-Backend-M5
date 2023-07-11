@@ -95,13 +95,19 @@ De maneira geral, ao acessar a plataforma, um colaborador pode:
 
 </br>
 
-## 🚛 Links
+## 💫 Links
 
 Link deste repositório no GitHub;
 
 - [Github Repo](https://github.com/toledomg/T15-Projeto-Final-Backend-M5)
 
 - [Link Deploy](https://api-biblioteka-hgmd.onrender.com)
+
+</br>
+
+## 🚚 Documentação e Rotas
+
+Link da Documentação e Rotas;
 
 - [Link Documentação Swagger](https://api-biblioteka-hgmd.onrender.com/api/docs/swagger/)
 
