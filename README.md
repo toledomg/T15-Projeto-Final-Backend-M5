@@ -84,6 +84,12 @@ De maneira geral, ao acessar a plataforma, um colaborador pode:
 - Verificar o histórico de empréstimo de cada estudante.
 - Verificar status do estudante (se está bloqueado não pode emprestar uma nova cópia durante determinado tempo).
 
+### Rota para Email reset_password:
+
+    http://URL_API/api/users/password_reset/
+
+- Nesse reset o user receberá um email para poder resetar sua senha.
+
 ###
 
 ## 🚀 Tecnologias
