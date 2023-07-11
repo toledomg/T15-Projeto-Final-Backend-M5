@@ -240,7 +240,7 @@ pytest --testdox -vvs tests/test3/
 
 ## 🤝 Contribuições
 
-- **Alexsandro Toledo** - [Github](https://github.com/toledomg)
+- **Alexsandro Toledo** - [Github](https://github.com/toledomg) - [Linkedin](https://www.linkedin.com/in/toledomg/)
 - **Carol Rocha** - [Github](https://github.com/Carol-Rocha)
 - **Laisa Andrade** - [Github](https://github.com/LaisaCCAndrade)
 - **Lucas Ribeiro Marques** - [Github](https://github.com/lribeiromarques)
