@@ -34,6 +34,21 @@
 
 ## 💻 Features
 
+- [x] Cadastro de usuários
+- [x] Bloqueio de usuários por atraso
+- [x] Histórico de Livros por usuário
+- [x] Verificação do Status de usuários no momento do empréstimo
+- [x] Cadastro de Livros
+- [x] Seguir Livros
+- [x] Informações de Livros
+- [x] Avaliação de Livros
+- [x] Livros disponíveis
+- [x] Devolução de Livros
+- [x] Devolução em Dia útil
+- [x] Multa de devolução tardia do Livro
+- [x] Send Email para usuários, quando o livro estiver disponível
+- [x] Bloqueio e desbloqueio automático de usuário atrasado
+
 ## Empréstimo de Livros
 
 - Cada livro só poderá ser emprestado por um período fixo de tempo.
@@ -226,3 +241,6 @@ pytest --testdox -vvs tests/test3/
 ##
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![made-with-license](https://badgen.net/github/license/toledomg/T15-Projeto-Final-Backend-M5)](https://opensource.org/license/mit/)
+[![contributors](https://badgen.net/github/contributors/toledomg/T15-Projeto-Final-Backend-M5)](https://github.com/toledomg/T15-Projeto-Final-Backend-M5/)
+[![commits](https://badgen.net/github/commits/toledomg/T15-Projeto-Final-Backend-M5)](https://github.com/toledomg/T15-Projeto-Final-Backend-M5/)
