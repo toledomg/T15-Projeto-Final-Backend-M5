@@ -2,13 +2,13 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from django.dispatch import receiver
 
-from django.db.models.signals import post_save
 from datetime import timedelta
 from django.utils import timezone
 
-from loans.models import Loans
 from copies.serializers import CopySerializer
 from users.serializers import UserSerializer
+
+from loans.models import Loans
 from copies.models import Copy
 
 

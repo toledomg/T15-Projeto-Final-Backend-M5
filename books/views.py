@@ -7,11 +7,8 @@ from rest_framework.generics import (
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from users.permissions import IsAdminOrReadOnly
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView, Response, Request, status
 from .models import Book, Follow
 from .serializers import BookSerializer, FollowSerializer, FollowedBooksSerializer
-from django.core.mail import send_mail
-from django.conf import settings
 from rest_framework.exceptions import ValidationError
 
 

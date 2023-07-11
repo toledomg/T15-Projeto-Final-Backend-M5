@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.utils.timezone import make_aware
 from rest_framework.generics import (
     ListCreateAPIView,
     ListAPIView,
@@ -6,15 +6,16 @@ from rest_framework.generics import (
 )
 from rest_framework.views import Response, status
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from datetime import datetime, timedelta, timezone
+from rest_framework.exceptions import PermissionDenied, ValidationError
 
-from users.serializers import UserSerializer
+from datetime import datetime, timedelta
+
 from .models import Loans
 from users.models import User
+
 from .serializers import LoansSerializer
 from users.permissions import IsLibraryCollaboratorOrOwner
-from rest_framework.exceptions import PermissionDenied, ValidationError
-from django.utils.timezone import make_aware, get_default_timezone
+
 
 
 class LoanView(ListCreateAPIView):

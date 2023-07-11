@@ -1,15 +1,10 @@
-from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.job import Job
 
 from users.models import User
 
-from datetime import date, datetime
-from django.utils import timezone
+from datetime import datetime
 from django.utils.timezone import make_aware
 
-from django.contrib.auth import get_user_model
-
-# user = get_user_model
 user = User.objects.all()
 
 

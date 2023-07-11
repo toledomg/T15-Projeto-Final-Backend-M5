@@ -164,8 +164,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "API Final M5 T15",
-    "DESCRIPTION": "Projeto Final M5",
+    "TITLE": "API BiblioteKa",
+    "DESCRIPTION": "Projeto Final M5 T15",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
@@ -197,11 +197,10 @@ AUTH_USER_MODEL = "users.User"
 ADMIN_SITE_HEADER = "API _Core"
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
-APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
 CRON_CLASSES = [
     "loans.LoanSchedulerJob",
-    # ...
 ]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

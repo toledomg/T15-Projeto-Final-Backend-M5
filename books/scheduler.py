@@ -1,11 +1,7 @@
-from apscheduler.schedulers.background import BackgroundScheduler
-from datetime import date, datetime
 from apscheduler.job import Job
-from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from .models import Follow, Book
 import os
-import dotenv
 
 
 def send_emails():
@@ -27,5 +23,4 @@ def send_emails():
 class BookSchedulerJob(Job):
     @staticmethod
     def run():
-        # print("email, deu certo")
         send_emails()
