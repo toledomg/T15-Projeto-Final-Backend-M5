@@ -16,15 +16,13 @@
 
 ###
 
-- Desenvolvimento do Projeto
 - Utilizar Django Rest Framework como base do projeto;
 - Desenvolver diagrama ER;
 - Usar banco de dados postgres;
 - Utilizar Autenticação/Autorização;
 - Utilizar views desenvolvidas com Generic View;
-- Documentação, tanto de como rodar seu projeto, quanto das rotas, para a equipe de ensino conseguir corrigir e validar o uso em produção;
+- Documentação, tanto de como rodar seu projeto, quanto das rotas para validar o uso em produção;
 - Deploy da Aplicação;
-- Validável em produção;
 - Commits padronizados e organizados (Conventional Commits);
 
 </details>
