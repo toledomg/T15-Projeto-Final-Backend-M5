@@ -90,8 +90,8 @@ De maneira geral, ao acessar a plataforma, um colaborador pode:
 
 ## 🚀 Tecnologias
 
-- **[Python](https://www.python.org/)**
 - **[Django](https://www.djangoproject.com/)**
+- **[PostgreSQL](https://www.postgresql.org/)**
 
 </br>
 
@@ -131,28 +131,6 @@ git clone https://github.com/toledomg/T15-Projeto-Final-Backend-M5.git
 pip install -r requirements.txt
 ```
 
-## Instalação dos pacotes de teste
-
-- Verifique se os pacotes `pytest` e/ou `pytest-testdox` estão instalados globalmente em seu sistema:
-
-```shell
-pip list
-```
-
-- Caso seja listado o `pytest` e/ou `pytest-testdox` e/ou `pytest-django` em seu ambiente global, utilize os seguintes comando para desinstalá-los globalmente:
-
-```shell
-pip uninstall pytest
-```
-
-```shell
-pip uninstall pytest-testdox
-```
-
-```shell
-pip uninstall pytest-django
-```
-
 ### A partir disso, prossiga com os passos:
 
 1. Crie seu ambiente virtual:
@@ -180,54 +158,6 @@ source venv/Scripts/activate
 python manage.py runserver
 ```
 
-4. Instale o pacote `pytest-testdox`:
-
-```shell
-pip install pytest-testdox pytest-django
-```
-
-5. Agora é só rodar os testes no diretório principal do projeto:
-
-```shell
-pytest --testdox -vvs
-```
-
-6. Caso queira um log mais resumido, basta executar com os testes sem as flags **verbose**:
-
-```shell
-pytest --testdox
-```
-
-</details>
-
-</br>
-
-## 🧪 Testes
-
-<details>
-  
-## <summary>Rodando os testes por partes</summary>
-  
-Caso você tenha interesse em rodar apenas um diretório de testes específico, pode utilizar o comando:
-
-- Rodando testes de users:
-
-```python
-pytest --testdox -vvs tests/test1/
-```
-
-- Rodando testes de test2:
-
-```python
-pytest --testdox -vvs tests/test2/
-```
-
-- Rodando testes de test3:
-
-```python
-pytest --testdox -vvs tests/test3/
-```
-
 </details>
 
 </br>
@@ -250,7 +180,7 @@ pytest --testdox -vvs tests/test3/
 <!-- [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) -->
 
 [![made-with-django](https://img.shields.io/badge/Made%20with-Django-1f425f.svg)](https://www.djangoproject.com/)
-[![made-with-postgres](https://img.shields.io/badge/Made%20with-PostgresSQL-1f425f.svg)](https://www.djangoproject.com/)
+[![made-with-postgres](https://img.shields.io/badge/Made%20with-PostgreSQL-1f425f.svg)](https://www.postgresql.org/)
 
 [![made-with-license](https://badgen.net/github/license/toledomg/T15-Projeto-Final-Backend-M5)](https://opensource.org/license/mit/)
 [![contributors](https://badgen.net/github/contributors/toledomg/T15-Projeto-Final-Backend-M5)](https://github.com/toledomg/T15-Projeto-Final-Backend-M5/)
