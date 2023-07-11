@@ -9,8 +9,8 @@ from .permissions import IsLibraryCollaboratorOrOwner, IsAdminOrReadOnly
 
 class UserView(ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAdminUser]    
-    
+    permission_classes = [IsAdminUser]
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
