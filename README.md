@@ -1,12 +1,12 @@
 <h1 align="center"> 🏆 T15 - Projeto Final Backend BiblioteKA 📚 - M5 </h1>
 
 <h3 align="center"> 
-	🚀 🚀 Projeto Backend BiblioteKA 📚
+	🚀 Projeto Backend BiblioteKA 📚
 </h3>
 
 ## 💡 Introdução
 
-- O objetivo desse desafio é construir uma aplicação que faz a gestão de uma biblioteca.
+- O objetivo desse projeto foi construir uma aplicação que faz a gestão de uma biblioteca.
 
 ## 📚 Requisitos
 
@@ -18,17 +18,14 @@
 
 - Desenvolvimento do Projeto
 - Utilizar Django Rest Framework como base do projeto;
-- Obrigatório desenvolver diagrama ER;
-- Obrigatório usar banco de dados postgres;
-- Obrigatório utilizar Autenticação/Autorização;
-- Obrigatório utilizar views desenvolvidas com Generic View;
-- Obrigatório ter documentação, tanto de como rodar seu projeto, quanto das rotas, para a equipe de ensino conseguir corrigir e validar o uso em produção;
-- Deploy é obrigatório;
-- Tem que ser validável em produção;
+- Desenvolver diagrama ER;
+- Usar banco de dados postgres;
+- Utilizar Autenticação/Autorização;
+- Utilizar views desenvolvidas com Generic View;
+- Documentação, tanto de como rodar seu projeto, quanto das rotas, para a equipe de ensino conseguir corrigir e validar o uso em produção;
+- Deploy da Aplicação;
+- Validável em produção;
 - Commits padronizados e organizados (Conventional Commits);
-- Frontend é opcional, priorizem o backend;
-- Testes são opcionais, mas será um ótimo diferencial;
-- Pode usar o nome da Kenzie Academy Brasil nos projetos se precisar.
 
 </details>
 
@@ -65,7 +62,7 @@ Se um estudante não efetuar a devolução dos livros no prazo estipulado, ele n
 
 ## Usuários
 
-O sistema permiti o cadastro de usuários com 2 tipos:
+O sistema permite o cadastro de usuários com 2 tipos:
 
 - Estudante
 - Colaborador da biblioteca.
@@ -98,13 +95,17 @@ De maneira geral, ao acessar a plataforma, um colaborador pode:
 
 </br>
 
-## 🚛 Entregáveis
+## 🚛 Links
 
 Link deste repositório no GitHub;
 
 - [Github Repo](https://github.com/toledomg/T15-Projeto-Final-Backend-M5)
 
 - [Link Deploy](https://api-biblioteka-hgmd.onrender.com)
+
+- [Link Documentação Swagger](https://api-biblioteka-hgmd.onrender.com/api/docs/swagger/)
+
+- [Link Documentação Redoc](https://api-biblioteka-hgmd.onrender.com/api/docs/redoc/)
 
 </br>
 
