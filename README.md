@@ -164,10 +164,24 @@ python manage.py runserver
 
 ## 🤝 Contribuições
 
-- **Alexsandro Toledo** - [Github](https://github.com/toledomg) - [Linkedin](https://www.linkedin.com/in/toledomg/)
-- **Carol Rocha** - [Github](https://github.com/Carol-Rocha) - [Linkedin](https://www.linkedin.com/in/carol-rocha-70a819247/)
-- **Laisa Andrade** - [Github](https://github.com/LaisaCCAndrade) - [Linkedin](https://www.linkedin.com/in/laisa-c-c-andrade/)
-- **Lucas Ribeiro Marques** - [Github](https://github.com/lribeiromarques) - [Linkedin]()
+- **Alexsandro Toledo**
+
+  - [Github](https://github.com/toledomg)
+  - [Linkedin](https://www.linkedin.com/in/toledomg/)
+
+- **Carol Rocha**
+
+  - [Github](https://github.com/Carol-Rocha)
+  - [Linkedin](https://www.linkedin.com/in/carol-rocha-70a819247/)
+
+- **Laisa Andrade**
+
+  - [Github](https://github.com/LaisaCCAndrade)
+  - [Linkedin](https://www.linkedin.com/in/laisa-c-c-andrade/)
+
+- **Lucas Ribeiro Marques**
+  - [Github](https://github.com/lribeiromarques)
+  - [Linkedin]()
 
 ##
 

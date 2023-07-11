@@ -37,6 +37,7 @@ urlpatterns = [
     path("api/", include("copies.urls")),
     path("api/", include("loans.urls")),
     path("api/", include("reviews.urls")),
+    # Documentação API
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/docs/swagger/",
