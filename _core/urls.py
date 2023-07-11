@@ -29,8 +29,10 @@ admin.site.site_header = settings.ADMIN_SITE_HEADER
 admin.sites.AdminSite.site_title = "API Projeto Final "
 admin.sites.AdminSite.index_title = "Dashboard"
 
+from users.views import index
 
 urlpatterns = [
+    # path('', index, name="index"),
     path("admin/", admin.site.urls),
     path("api/", include("users.urls")),
     path("api/", include("books.urls")),

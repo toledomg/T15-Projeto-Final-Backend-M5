@@ -55,9 +55,9 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
-    "django_apscheduler",
     "corsheaders",
-    'django_rest_passwordreset',
+    "django_rest_passwordreset",
+    "django_apscheduler",
 ]
 
 MY_APPS = [

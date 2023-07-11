@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: API Final M5 T15
+  title: API BiblioteKa
   version: 1.0.0
-  description: Projeto Final M5
+  description: Projeto Final M5 T15
 paths:
   /api/books/:
     get:
@@ -567,9 +567,7 @@ paths:
       tags:
       - api
       security:
-      - cookieAuth: []
-      - basicAuth: []
-      - {}
+      - jwtAuth: []
       responses:
         '200':
           content:
@@ -594,9 +592,7 @@ paths:
               $ref: '#/components/schemas/User'
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
-      - {}
+      - jwtAuth: []
       responses:
         '201':
           content:
