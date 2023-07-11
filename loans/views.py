@@ -17,7 +17,6 @@ from .serializers import LoansSerializer
 from users.permissions import IsLibraryCollaboratorOrOwner
 
 
-
 class LoanView(ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsLibraryCollaboratorOrOwner]
@@ -95,7 +94,7 @@ class LoanDetailView(RetrieveUpdateDestroyAPIView):
             instance.copy.save()
 
             instance.is_returned = True
-            instance.save()            
+            instance.save()
 
             return Response(
                 {

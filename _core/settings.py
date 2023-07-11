@@ -56,6 +56,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "django_apscheduler",
+    "corsheaders",
 ]
 
 MY_APPS = [
@@ -72,6 +73,7 @@ INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + MY_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -199,8 +201,9 @@ ADMIN_SITE_HEADER = "API _Core"
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
-CRON_CLASSES = [
-    "loans.LoanSchedulerJob",
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "https://api-biblioteka-hgmd.onrender.com/",
 ]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

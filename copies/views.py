@@ -9,6 +9,7 @@ from rest_framework.generics import (
 
 from books.models import Book
 
+
 class CopyBookView(ListAPIView):
     serializer_class = CopySerializer
 
