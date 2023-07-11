@@ -247,7 +247,8 @@ pytest --testdox -vvs tests/test3/
 
 ##
 
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+<!-- [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) -->
+
 [![made-with-django](https://img.shields.io/badge/Made%20with-Django-1f425f.svg)](https://www.djangoproject.com/)
 [![made-with-postgres](https://img.shields.io/badge/Made%20with-PostgresSQL-1f425f.svg)](https://www.djangoproject.com/)
 
