@@ -11,27 +11,6 @@ urlpatterns = [
     path("users/<int:pk>/", UserDetailView.as_view()),
     path("users/login/", TokenObtainPairView.as_view()),
     path("users/login/refresh/", TokenRefreshView.as_view()),
-    # Reset Password User, usando template do Django.
-    # path(
-    #     "users/password_reset/",
-    #     auth_views.PasswordResetView.as_view(),
-    #     name="password_reset",
-    # ),
-    # path(
-    #     "users/password_reset/done/",
-    #     auth_views.PasswordResetDoneView.as_view(),
-    #     name="password_reset_done",
-    # ),
-    # path(
-    #     "users/reset/<uidb64>/<token>/",
-    #     auth_views.PasswordResetConfirmView.as_view(),
-    #     name="password_reset_confirm",
-    # ),
-    # path(
-    #     "users/reset/done/",
-    #     auth_views.PasswordResetCompleteView.as_view(),
-    #     name="password_reset_complete",
-    # ),
     # Reset Password User usando template personalizada
     path(
         "users/password_reset/",
