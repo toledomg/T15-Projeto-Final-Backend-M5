@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 
+from django.template import *
 from django.core.management.utils import get_random_secret_key
 import os
 import dotenv
@@ -89,7 +90,9 @@ ROOT_URLCONF = "_core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            "/users/templates/password/password-reset.html",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

@@ -31,7 +31,7 @@ def login_view(request):
                 login(request, user)
                 return redirect("/")
             else:
-                msg = "Usuario ou senha inválidos"
+                msg = "Usuário ou senha inválidos"
         else:
             msg = "Erro ao logar"
 
@@ -40,7 +40,7 @@ def login_view(request):
 
 @login_required(login_url="/login/")
 def index(request):
-    return render(request, "index.html", {"msg": "Olá humano"})
+    return render(request, "index.html", {"msg": "Home Page Biblioteka!"})
 
 
 class UserView(ListCreateAPIView):

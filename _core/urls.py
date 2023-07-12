@@ -29,16 +29,20 @@ admin.site.site_header = settings.ADMIN_SITE_HEADER
 admin.sites.AdminSite.site_title = "API Projeto Final "
 admin.sites.AdminSite.index_title = "Dashboard"
 
+from django.contrib.auth import views as auth_views
+from users.views import login_view
 from users.views import index
 
 urlpatterns = [
-    # path('', index, name="index"),
+    path("", index, name="index"),
     path("admin/", admin.site.urls),
-    path("api/", include("users.urls")),
-    path("api/", include("books.urls")),
-    path("api/", include("copies.urls")),
-    path("api/", include("loans.urls")),
-    path("api/", include("reviews.urls")),
+    path("login/", login_view, name="login"),
+    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path("", include("users.urls")),
+    path("", include("books.urls")),
+    path("", include("copies.urls")),
+    path("", include("loans.urls")),
+    path("", include("reviews.urls")),
     # Documentação API
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
