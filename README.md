@@ -86,7 +86,7 @@ De maneira geral, ao acessar a plataforma, um colaborador pode:
 
 ### Rota para Login e acesso ao reset_password:
 
-    http://URL_API/login/
+ `http://URL_API/login/`
 
 - Nesse link tem uma tela de login com um botão reset password.
 
