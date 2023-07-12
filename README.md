@@ -86,7 +86,7 @@ De maneira geral, ao acessar a plataforma, um colaborador pode:
 
 ### Rota para Login e acesso ao reset_password:
 
- `http://URL_API/login/`
+`http://URL_API/login/`
 
 - Nesse link tem uma tela de login com um botão reset password.
 
@@ -187,7 +187,7 @@ python manage.py runserver
 
 - **Lucas Ribeiro Marques**
   - [Github](https://github.com/lribeiromarques)
-  - [Linkedin]()
+  - [Linkedin](https://www.linkedin.com/in/lucas-ribeiro-a774b5130/)
 
 ##
 
