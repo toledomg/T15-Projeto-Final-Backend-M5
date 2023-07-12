@@ -205,13 +205,15 @@ ADMIN_SITE_HEADER = "API _Core"
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://127.0.0.1:8000",
-#     "https://api-biblioteka-hgmd.onrender.com/",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "https://api-biblioteka-hgmd.onrender.com"
+]
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
