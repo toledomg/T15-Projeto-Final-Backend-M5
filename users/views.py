@@ -45,7 +45,7 @@ def index(request):
 
 class UserView(ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsLibraryCollaboratorOrOwner]
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
