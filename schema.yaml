@@ -1,12 +1,12 @@
 openapi: 3.0.3
 info:
-  title: API Final M5 T15
+  title: API BiblioteKa
   version: 1.0.0
-  description: Projeto Final M5
+  description: Projeto Final M5 T15
 paths:
-  /api/books/:
+  /books/:
     get:
-      operationId: api_books_list
+      operationId: books_list
       parameters:
       - name: page
         required: false
@@ -15,7 +15,7 @@ paths:
         schema:
           type: integer
       tags:
-      - api
+      - books
       security:
       - jwtAuth: []
       responses:
@@ -26,9 +26,9 @@ paths:
                 $ref: '#/components/schemas/PaginatedBookList'
           description: ''
     post:
-      operationId: api_books_create
+      operationId: books_create
       tags:
-      - api
+      - books
       requestBody:
         content:
           application/json:
@@ -50,9 +50,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Book'
           description: ''
-  /api/books/{id}/:
+  /books/{id}/:
     get:
-      operationId: api_books_retrieve
+      operationId: books_retrieve
       parameters:
       - in: path
         name: id
@@ -60,7 +60,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - books
       security:
       - jwtAuth: []
       responses:
@@ -71,7 +71,7 @@ paths:
                 $ref: '#/components/schemas/Book'
           description: ''
     put:
-      operationId: api_books_update
+      operationId: books_update
       parameters:
       - in: path
         name: id
@@ -79,7 +79,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - books
       requestBody:
         content:
           application/json:
@@ -102,7 +102,7 @@ paths:
                 $ref: '#/components/schemas/Book'
           description: ''
     patch:
-      operationId: api_books_partial_update
+      operationId: books_partial_update
       parameters:
       - in: path
         name: id
@@ -110,7 +110,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - books
       requestBody:
         content:
           application/json:
@@ -132,7 +132,7 @@ paths:
                 $ref: '#/components/schemas/Book'
           description: ''
     delete:
-      operationId: api_books_destroy
+      operationId: books_destroy
       parameters:
       - in: path
         name: id
@@ -140,17 +140,17 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - books
       security:
       - jwtAuth: []
       responses:
         '204':
           description: No response body
-  /api/books/follow/:
+  /books/follow/:
     post:
-      operationId: api_books_follow_create
+      operationId: books_follow_create
       tags:
-      - api
+      - books
       requestBody:
         content:
           application/json:
@@ -171,9 +171,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Follow'
           description: ''
-  /api/books/followed-books/:
+  /books/followed-books/:
     get:
-      operationId: api_books_followed_books_list
+      operationId: books_followed_books_list
       parameters:
       - name: page
         required: false
@@ -182,7 +182,7 @@ paths:
         schema:
           type: integer
       tags:
-      - api
+      - books
       security:
       - jwtAuth: []
       responses:
@@ -192,9 +192,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedFollowedBooksList'
           description: ''
-  /api/copies/{id}/books/:
+  /copies/{id}/books/:
     get:
-      operationId: api_copies_books_list
+      operationId: copies_books_list
       parameters:
       - in: path
         name: id
@@ -208,7 +208,7 @@ paths:
         schema:
           type: integer
       tags:
-      - api
+      - copies
       security:
       - cookieAuth: []
       - basicAuth: []
@@ -220,9 +220,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedCopyList'
           description: ''
-  /api/loans/:
+  /loans/:
     get:
-      operationId: api_loans_list
+      operationId: loans_list
       parameters:
       - name: page
         required: false
@@ -231,7 +231,7 @@ paths:
         schema:
           type: integer
       tags:
-      - api
+      - loans
       security:
       - jwtAuth: []
       responses:
@@ -242,9 +242,9 @@ paths:
                 $ref: '#/components/schemas/PaginatedLoansList'
           description: ''
     post:
-      operationId: api_loans_create
+      operationId: loans_create
       tags:
-      - api
+      - loans
       requestBody:
         content:
           application/json:
@@ -266,9 +266,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Loans'
           description: ''
-  /api/loans/{id}/:
+  /loans/{id}/:
     get:
-      operationId: api_loans_retrieve
+      operationId: loans_retrieve
       parameters:
       - in: path
         name: id
@@ -276,7 +276,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - loans
       security:
       - jwtAuth: []
       responses:
@@ -287,7 +287,7 @@ paths:
                 $ref: '#/components/schemas/Loans'
           description: ''
     put:
-      operationId: api_loans_update
+      operationId: loans_update
       parameters:
       - in: path
         name: id
@@ -295,7 +295,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - loans
       requestBody:
         content:
           application/json:
@@ -318,7 +318,7 @@ paths:
                 $ref: '#/components/schemas/Loans'
           description: ''
     patch:
-      operationId: api_loans_partial_update
+      operationId: loans_partial_update
       parameters:
       - in: path
         name: id
@@ -326,7 +326,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - loans
       requestBody:
         content:
           application/json:
@@ -348,7 +348,7 @@ paths:
                 $ref: '#/components/schemas/Loans'
           description: ''
     delete:
-      operationId: api_loans_destroy
+      operationId: loans_destroy
       parameters:
       - in: path
         name: id
@@ -356,15 +356,15 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - loans
       security:
       - jwtAuth: []
       responses:
         '204':
           description: No response body
-  /api/loans/user/:
+  /loans/user/:
     get:
-      operationId: api_loans_user_list
+      operationId: loans_user_list
       parameters:
       - name: page
         required: false
@@ -373,7 +373,7 @@ paths:
         schema:
           type: integer
       tags:
-      - api
+      - loans
       security:
       - jwtAuth: []
       responses:
@@ -383,9 +383,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedLoansList'
           description: ''
-  /api/reviews/:
+  /reviews/:
     get:
-      operationId: api_reviews_list
+      operationId: reviews_list
       parameters:
       - name: page
         required: false
@@ -394,7 +394,7 @@ paths:
         schema:
           type: integer
       tags:
-      - api
+      - reviews
       security:
       - jwtAuth: []
       - {}
@@ -406,9 +406,9 @@ paths:
                 $ref: '#/components/schemas/PaginatedReviewList'
           description: ''
     post:
-      operationId: api_reviews_create
+      operationId: reviews_create
       tags:
-      - api
+      - reviews
       requestBody:
         content:
           application/json:
@@ -430,9 +430,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Review'
           description: ''
-  /api/reviews/{id}/:
+  /reviews/{id}/:
     get:
-      operationId: api_reviews_retrieve
+      operationId: reviews_retrieve
       parameters:
       - in: path
         name: id
@@ -440,7 +440,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - reviews
       security:
       - jwtAuth: []
       responses:
@@ -451,7 +451,7 @@ paths:
                 $ref: '#/components/schemas/Review'
           description: ''
     put:
-      operationId: api_reviews_update
+      operationId: reviews_update
       parameters:
       - in: path
         name: id
@@ -459,7 +459,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - reviews
       requestBody:
         content:
           application/json:
@@ -482,7 +482,7 @@ paths:
                 $ref: '#/components/schemas/Review'
           description: ''
     patch:
-      operationId: api_reviews_partial_update
+      operationId: reviews_partial_update
       parameters:
       - in: path
         name: id
@@ -490,7 +490,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - reviews
       requestBody:
         content:
           application/json:
@@ -512,7 +512,7 @@ paths:
                 $ref: '#/components/schemas/Review'
           description: ''
     delete:
-      operationId: api_reviews_destroy
+      operationId: reviews_destroy
       parameters:
       - in: path
         name: id
@@ -520,15 +520,15 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - reviews
       security:
       - jwtAuth: []
       responses:
         '204':
           description: No response body
-  /api/reviews/{id}/book/:
+  /reviews/{id}/book/:
     get:
-      operationId: api_reviews_book_list
+      operationId: reviews_book_list
       parameters:
       - in: path
         name: id
@@ -542,7 +542,7 @@ paths:
         schema:
           type: integer
       tags:
-      - api
+      - reviews
       security:
       - cookieAuth: []
       - basicAuth: []
@@ -554,9 +554,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedReviewList'
           description: ''
-  /api/users/:
+  /users/:
     get:
-      operationId: api_users_list
+      operationId: users_list
       parameters:
       - name: page
         required: false
@@ -565,11 +565,9 @@ paths:
         schema:
           type: integer
       tags:
-      - api
+      - users
       security:
-      - cookieAuth: []
-      - basicAuth: []
-      - {}
+      - jwtAuth: []
       responses:
         '200':
           content:
@@ -578,9 +576,9 @@ paths:
                 $ref: '#/components/schemas/PaginatedUserList'
           description: ''
     post:
-      operationId: api_users_create
+      operationId: users_create
       tags:
-      - api
+      - users
       requestBody:
         content:
           application/json:
@@ -594,9 +592,7 @@ paths:
               $ref: '#/components/schemas/User'
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
-      - {}
+      - jwtAuth: []
       responses:
         '201':
           content:
@@ -604,9 +600,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
           description: ''
-  /api/users/{id}/:
+  /users/{id}/:
     get:
-      operationId: api_users_retrieve
+      operationId: users_retrieve
       parameters:
       - in: path
         name: id
@@ -614,7 +610,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - users
       security:
       - jwtAuth: []
       responses:
@@ -625,7 +621,7 @@ paths:
                 $ref: '#/components/schemas/User'
           description: ''
     put:
-      operationId: api_users_update
+      operationId: users_update
       parameters:
       - in: path
         name: id
@@ -633,7 +629,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - users
       requestBody:
         content:
           application/json:
@@ -656,7 +652,7 @@ paths:
                 $ref: '#/components/schemas/User'
           description: ''
     patch:
-      operationId: api_users_partial_update
+      operationId: users_partial_update
       parameters:
       - in: path
         name: id
@@ -664,7 +660,7 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - users
       requestBody:
         content:
           application/json:
@@ -686,7 +682,7 @@ paths:
                 $ref: '#/components/schemas/User'
           description: ''
     delete:
-      operationId: api_users_destroy
+      operationId: users_destroy
       parameters:
       - in: path
         name: id
@@ -694,20 +690,20 @@ paths:
           type: integer
         required: true
       tags:
-      - api
+      - users
       security:
       - jwtAuth: []
       responses:
         '204':
           description: No response body
-  /api/users/login/:
+  /users/login/:
     post:
-      operationId: api_users_login_create
+      operationId: users_login_create
       description: |-
         Takes a set of user credentials and returns an access and refresh JSON web
         token pair to prove the authentication of those credentials.
       tags:
-      - api
+      - users
       requestBody:
         content:
           application/json:
@@ -727,14 +723,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/TokenObtainPair'
           description: ''
-  /api/users/login/refresh/:
+  /users/login/refresh/:
     post:
-      operationId: api_users_login_refresh_create
+      operationId: users_login_refresh_create
       description: |-
         Takes a refresh type JSON web token and returns an access type JSON web
         token if the refresh token is valid.
       tags:
-      - api
+      - users
       requestBody:
         content:
           application/json:
