@@ -119,11 +119,11 @@ DATABASES = {
     "default": {
         # O django já contém a instrução para rodar o motor psycopg2 do postgres
         'ENGINE': 'django.db.backends.mysql',
-        "NAME": os.getenv("POSTGRES_DB_NAME"),
-        "USER": os.getenv("POSTGRES_DB_USER"),
-        "PASSWORD": os.getenv("POSTGRES_DB_PASSWORD"),
+        "NAME": os.getenv("MYSQL_DB_NAME"),
+        "USER": os.getenv("MYSQL_DB_USER"),
+        "PASSWORD": os.getenv("MYSQL_DB_PASSWORD"),
         "HOST": os.getenv("DOMAIN"),
-        "PORT": os.getenv("POSTGRES_DB_PORT"),
+        "PORT": os.getenv("MYSQL_DB_PORT"),
     },
 }
 
@@ -131,7 +131,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 if DATABASE_URL:
     db_from_env = dj_database_url.config(
-        default=DATABASE_URL, conn_max_age=500, ssl_require=True
+        default=DATABASE_URL, conn_max_age=500, ssl_require=False
     )
     DATABASES["default"].update(db_from_env)
     DEBUG = False
