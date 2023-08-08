@@ -10,18 +10,15 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("books", "0001_initial"),
+        ("reviews", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="follow",
+            model_name="review",
             name="user",
             field=models.ForeignKey(
-                null=True,
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name="user",
-                to=settings.AUTH_USER_MODEL,
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
             ),
         ),
     ]
